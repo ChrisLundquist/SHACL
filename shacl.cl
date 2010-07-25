@@ -264,9 +264,7 @@ SHAKernel( constant unsigned const char* message, uint message_length, constant 
     // TODO find what message I should calculate
     unsigned char my_message[16];
     for(int i = 0; i < message_length; i++)
-    {
         my_message[i] = message[i];
-    }
 
     // Our hasher
     struct SHA1Context context;
@@ -276,13 +274,7 @@ SHAKernel( constant unsigned const char* message, uint message_length, constant 
     // check if we found it
     //if( found_hash( context.Message_Digest, target_hash ) )
 
-    if(gid == 0){
-        for( int i = 0; i < message_length; i++)
-                 answer[i] = my_message[i];
-        for( int i = 0; i < 6; i++)
-                 target_hash[i] = context.Message_Digest[i];
-                
-    }
-        
+    for( int i = 0; i < 6; i++)
+         answer[i] = context.Message_Digest[i];
 }
 
